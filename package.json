@@ -2,7 +2,7 @@
     "name": "ghost-starter-theme",
     "description": "A starter theme for Ghost theme development",
     "demo": "https://starter.ghost.io",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "engines": {
         "ghost": ">=5.0.0"
     },
@@ -18,9 +18,9 @@
         "pretest": "npm run build"
     },
     "author": {
-        "name": "Ghost Foundation",
-        "email": "hello@ghost.org",
-        "url": "https://ghost.org"
+        "name": "COMRADE CIRCUITS",
+        "email": "hey@comradecircuits.com",
+        "url": "https://comradecircuits.com"
     },
     "gpm": {
         "type": "theme",
@@ -87,17 +87,10 @@
                 "default": false,
                 "description": "Enable dark mode by default"
             },
-
-
-
             "favicon": {
                 "type": "image",
                 "description": "Custom favicon for your site"
             },
-
-
-
-
             "layout_style": {
                 "type": "select",
                 "options": [

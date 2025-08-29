@@ -2,34 +2,111 @@
 /* ---------------------------------------------------------- */
 
 :root {
+    /* Color Palette */
+    --color-bg-primary: #0a0a0a;
+    --color-bg-secondary: #1a1a1a;
+    --color-bg-tertiary: #2a2a2a;
+    --color-bg-card: #1e1e1e;
+    --color-bg-overlay: rgba(0, 0, 0, 0.8);
+    
+    /* Neon Colors */
+    --color-neon-cyan: #00ffff;
+    --color-neon-pink: #ff00ff;
+    --color-neon-green: #00ff41;
+    --color-neon-yellow: #ffff00;
+    --color-neon-orange: #ff6600;
+    --color-neon-purple: #8a2be2;
+    
+    /* Text Colors */
+    --color-text-primary: #ffffff;
+    --color-text-secondary: #b0b0b0;
+    --color-text-muted: #808080;
+    --color-text-accent: var(--color-neon-cyan);
+    --color-text-link: var(--color-neon-pink);
+    --color-text-link-hover: var(--color-neon-cyan);
+    
+    /* Border Colors */
+    --color-border-primary: #333333;
+    --color-border-secondary: #444444;
+    --color-border-accent: var(--color-neon-cyan);
+    --color-border-glow: var(--color-neon-pink);
+    
+    /* Shadow Effects */
+    --shadow-neon-cyan: 0 0 10px var(--color-neon-cyan), 0 0 20px var(--color-neon-cyan), 0 0 30px var(--color-neon-cyan);
+    --shadow-neon-pink: 0 0 10px var(--color-neon-pink), 0 0 20px var(--color-neon-pink), 0 0 30px var(--color-neon-pink);
+    --shadow-neon-green: 0 0 10px var(--color-neon-green), 0 0 20px var(--color-neon-green), 0 0 30px var(--color-neon-green);
+    --shadow-dark: 0 4px 6px rgba(0, 0, 0, 0.3);
+    --shadow-glow: 0 0 20px rgba(0, 255, 255, 0.3);
+    
+    /* Typography */
+    --font-family-primary: 'Courier New', 'Monaco', 'Menlo', monospace;
+    --font-family-secondary: 'Arial', sans-serif;
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.25rem;
+    --font-size-2xl: 1.5rem;
+    --font-size-3xl: 1.875rem;
+    --font-size-4xl: 2.25rem;
+    --font-size-5xl: 3rem;
+    
+    /* Spacing */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-2xl: 3rem;
+    --spacing-3xl: 4rem;
+    
+    /* Border Radius */
+    --radius-sm: 2px;
+    --radius-md: 4px;
+    --radius-lg: 8px;
+    --radius-xl: 12px;
+    
+    /* Transitions */
+    --transition-fast: 0.15s ease-in-out;
+    --transition-normal: 0.3s ease-in-out;
+    --transition-slow: 0.5s ease-in-out;
+    
+    /* Z-index */
+    --z-dropdown: 1000;
+    --z-sticky: 1020;
+    --z-fixed: 1030;
+    --z-modal-backdrop: 1040;
+    --z-modal: 1050;
+    --z-popover: 1060;
+    --z-tooltip: 1070;
+    
+    /* Grid */
+    --container-max-width: 1200px;
+    --grid-gap: 2rem;
+    
+    /* Animations */
+    --animation-glitch: glitch 0.3s infinite;
+    --animation-scanner: scanner 2s linear infinite;
+    --animation-pulse: pulse 2s ease-in-out infinite;
+    --animation-flicker: flicker 0.15s infinite linear;
+}
 
-    /* Colours */
-    --color-primary: var(--ghost-accent-color, #3eb0ef);
-    --color-base: #131313;
-    --color-border: #ddd;
-    --color-bg: #f5f5f5;
-    --color-success: #80b912;
-    --color-error: #f05230;
+/* Dark mode (default for cyberpunk) */
+@media (prefers-color-scheme: dark) {
+    :root {
+        /* Override any light mode preferences for cyberpunk theme */
+        --color-bg-primary: #0a0a0a;
+        --color-bg-secondary: #1a1a1a;
+        --color-text-primary: #ffffff;
+    }
+}
 
-    /* Fonts */
-    --font-sans-serif: "Space Mono", "VT323", "Share Tech Mono", "Inconsolata", "Source Code Pro", "Roboto Mono", "Anonymous Pro", "Overpass Mono", "PT Mono", "Ubuntu Mono", monospace;
-    --font-serif: Georgia, Times, serif;
-    --font-mono: "Space Mono", "VT323", "Share Tech Mono", "Inconsolata", "Source Code Pro", "Roboto Mono", "Anonymous Pro", "Overpass Mono", "PT Mono", "Ubuntu Mono", monospace;
-    --font-light: 100;
-    --font-normal: 400;
-    --font-bold: 700;
-    --font-heavy: 800;
-
-    /* Breakpoints */
-    --xlarge: 1680px;
-    --large: 1280px;
-    --medium: 980px;
-    --small: 740px;
-    --xsmall: 480px;
-
-    /* Sizes */
-    --height: 4rem;
-    --margin: 2rem;
-    --radius: 0.5rem;
-
+/* Light mode fallback (if needed) */
+@media (prefers-color-scheme: light) {
+    :root {
+        /* Keep dark theme even in light mode preference */
+        --color-bg-primary: #0a0a0a;
+        --color-bg-secondary: #1a1a1a;
+        --color-text-primary: #ffffff;
+    }
 }

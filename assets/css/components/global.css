@@ -1,9 +1,10 @@
-/* Reset
-/* ---------------------------------------------------------- */
+/* Global Styles */
 
-*,
-*::before,
-*::after {
+/* Import Google Fonts for cyberpunk typography */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap');
+
+/* Base styles */
+* {
     box-sizing: border-box;
 }
 
@@ -13,186 +14,303 @@ html {
 }
 
 body {
-    min-height: 100vh;
+    background: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    line-height: 1.6;
     margin: 0;
     padding: 0;
-    color: #464646;
     font-family: var(--gh-font-body, "Space Mono", "VT323", "Share Tech Mono", "Inconsolata", "Source Code Pro", "Roboto Mono", "Anonymous Pro", "Overpass Mono", "PT Mono", "Ubuntu Mono", monospace);
     font-size: 1.5rem;
     line-height: 1.6em;
     font-weight: 400;
     font-style: normal;
-    background: #fff;
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
-
-p,
-ul,
-ol,
-li,
-dl,
-dd,
-hr,
-pre,
-form,
-table,
-video,
-figure,
-figcaption,
-blockquote {
-    margin: 0;
-    padding: 0;
-}
-
-ul[class],
-ol[class] {
-    padding: 0;
-    list-style: none;
-}
-
-img {
-    display: block;
-    max-width: 100%;
-    height: auto;
-}
-
-input,
-button,
-select,
-textarea {
-    font: inherit;
-    -webkit-appearance: none;
-}
-
-fieldset {
-    margin: 0;
-    padding: 0;
-    border: 0;
-}
-
-label {
-    display: block;
-    font-size: 0.9em;
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Orbitron', monospace;
     font-weight: 700;
-}
-
-hr {
-    position: relative;
-    display: block;
-    width: 100%;
-    height: 1px;
-    border: 0;
-    border-top: 1px solid currentcolor;
-    opacity: 0.2;
-}
-
-::selection {
-    text-shadow: none;
-    background: #cbeafb;
-}
-
-mark {
-    background-color: #fdffb6;
-}
-
-small {
-    font-size: 80%;
-}
-
-sub,
-sup {
-    position: relative;
-    font-size: 75%;
-    line-height: 0;
-    vertical-align: baseline;
-}
-sup {
-    top: -0.5em;
-}
-sub {
-    bottom: -0.25em;
-}
-
-ul:not([class]) li + li {
-    margin-top: 0.6em;
-}
-
-a:not([class]) {
-    color: var(--color-primary);
-    text-decoration-skip-ink: auto;
-}
-
-a[class] {
-    color: inherit;
-    text-decoration: none;
-    transition: 0.4s ease;
-}
-
-a[class]:hover {
-    transition: 0.2s ease;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    margin: 0;
-    line-height: 1.15em;
-    font-weight: 700;
-    font-family: var(--gh-font-heading, "Space Mono", "VT323", "Share Tech Mono", "Inconsolata", "Source Code Pro", "Roboto Mono", "Anonymous Pro", "Overpass Mono", "PT Mono", "Ubuntu Mono", monospace);
+    color: var(--color-text-primary);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 0 0 var(--spacing-md) 0;
+    text-shadow: 0 0 10px var(--color-neon-cyan);
 }
 
 h1 {
-    font-size: 4.6rem;
-    letter-spacing: -0.5px;
-}
-@media (max-width: 500px) {
-    h1 {
-        font-size: 2.7rem;
-    }
+    font-size: var(--font-size-4xl);
+    font-weight: 900;
+    text-shadow: 0 0 20px var(--color-neon-cyan), 0 0 40px var(--color-neon-cyan);
 }
 
 h2 {
-    font-size: 3.6rem;
-}
-@media (max-width: 500px) {
-    h2 {
-        font-size: 2.2rem;
-    }
+    font-size: var(--font-size-3xl);
+    color: var(--color-neon-pink);
+    text-shadow: 0 0 15px var(--color-neon-pink);
 }
 
 h3 {
-    font-size: 3.2rem;
-}
-@media (max-width: 500px) {
-    h3 {
-        font-size: 1.8rem;
-    }
+    font-size: var(--font-size-2xl);
+    color: var(--color-neon-green);
+    text-shadow: 0 0 10px var(--color-neon-green);
 }
 
-h4 {
-    font-size: 2.6rem;
+h4, h5, h6 {
+    font-size: var(--font-size-xl);
+    color: var(--color-text-secondary);
 }
 
-h5 {
-    font-size: 2.4rem;
+p {
+    margin: 0 0 var(--spacing-md) 0;
+    color: var(--color-text-secondary);
+    font-family: 'Share Tech Mono', monospace;
 }
 
-h6 {
-    font-size: 2.2rem;
+a {
+    color: var(--color-text-link);
+    text-decoration: none;
+    transition: var(--transition-normal);
+    position: relative;
 }
 
-/* Remove all animations and transitions for people that prefer not to see them */
-@media (prefers-reduced-motion: reduce) {
-    * {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
+a:hover {
+    color: var(--color-text-link-hover);
+    text-shadow: var(--shadow-neon-cyan);
+}
+
+a::before {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--color-neon-cyan);
+    transition: var(--transition-normal);
+    box-shadow: var(--shadow-neon-cyan);
+}
+
+a:hover::before {
+    width: 100%;
+}
+
+/* Lists */
+ul, ol {
+    margin: 0 0 var(--spacing-md) 0;
+    padding-left: var(--spacing-lg);
+    color: var(--color-text-secondary);
+}
+
+li {
+    margin-bottom: var(--spacing-sm);
+    font-family: 'Share Tech Mono', monospace;
+}
+
+/* Code blocks */
+code {
+    font-family: 'Share Tech Mono', monospace;
+    background: var(--color-bg-secondary);
+    color: var(--color-neon-green);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-neon-green);
+    box-shadow: 0 0 5px var(--color-neon-green);
+}
+
+pre {
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border-accent);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    overflow-x: auto;
+    box-shadow: var(--shadow-dark);
+}
+
+pre code {
+    background: none;
+    border: none;
+    padding: 0;
+    box-shadow: none;
+}
+
+/* Blockquotes */
+blockquote {
+    border-left: 4px solid var(--color-neon-pink);
+    margin: var(--spacing-lg) 0;
+    padding: var(--spacing-md) var(--spacing-lg);
+    background: var(--color-bg-secondary);
+    box-shadow: var(--shadow-neon-pink);
+    font-style: italic;
+    position: relative;
+}
+
+blockquote::before {
+    content: '"';
+    font-size: 3rem;
+    color: var(--color-neon-pink);
+    position: absolute;
+    top: -10px;
+    left: 10px;
+    text-shadow: var(--shadow-neon-pink);
+}
+
+/* Images */
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-dark);
+    transition: var(--transition-normal);
+}
+
+img:hover {
+    box-shadow: var(--shadow-glow);
+    transform: scale(1.02);
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: var(--spacing-lg) 0;
+    background: var(--color-bg-secondary);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-dark);
+}
+
+th, td {
+    padding: var(--spacing-md);
+    text-align: left;
+    border-bottom: 1px solid var(--color-border-primary);
+}
+
+th {
+    background: var(--color-bg-tertiary);
+    color: var(--color-neon-cyan);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+tr:hover {
+    background: var(--color-bg-tertiary);
+}
+
+/* Selection */
+::selection {
+    background: var(--color-neon-cyan);
+    color: var(--color-bg-primary);
+}
+
+::-moz-selection {
+    background: var(--color-neon-cyan);
+    color: var(--color-bg-primary);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--color-bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-neon-cyan);
+    border-radius: var(--radius-sm);
+    box-shadow: 0 0 5px var(--color-neon-cyan);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-neon-pink);
+    box-shadow: 0 0 5px var(--color-neon-pink);
+}
+
+/* Focus states */
+:focus {
+    outline: 2px solid var(--color-neon-cyan);
+    outline-offset: 2px;
+    box-shadow: 0 0 10px var(--color-neon-cyan);
+}
+
+/* Utility classes */
+.text-neon-cyan {
+    color: var(--color-neon-cyan);
+    text-shadow: var(--shadow-neon-cyan);
+}
+
+.text-neon-pink {
+    color: var(--color-neon-pink);
+    text-shadow: var(--shadow-neon-pink);
+}
+
+.text-neon-green {
+    color: var(--color-neon-green);
+    text-shadow: var(--shadow-neon-green);
+}
+
+.bg-cyber-dark {
+    background: var(--color-bg-primary);
+}
+
+.bg-cyber-secondary {
+    background: var(--color-bg-secondary);
+}
+
+.border-neon {
+    border: 1px solid var(--color-neon-cyan);
+    box-shadow: var(--shadow-neon-cyan);
+}
+
+.glow-cyan {
+    box-shadow: var(--shadow-neon-cyan);
+}
+
+.glow-pink {
+    box-shadow: var(--shadow-neon-pink);
+}
+
+.glow-green {
+    box-shadow: var(--shadow-neon-green);
+}
+
+/* Animations */
+@keyframes glitch {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+    100% { transform: translate(0); }
+}
+
+@keyframes scanner {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+@keyframes flicker {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    h1 { font-size: var(--font-size-3xl); }
+    h2 { font-size: var(--font-size-2xl); }
+    h3 { font-size: var(--font-size-xl); }
+    
+    .gh-page {
+        padding: 0 var(--spacing-md);
     }
 }
