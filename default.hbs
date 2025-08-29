@@ -18,11 +18,10 @@
     {{!-- Dynamic CSS Variables --}}
     <style>
     :root {
-        --primary-color: {{#match @custom.color_scheme "Blue"}}#00BFFF{{/match}}{{#match @custom.color_scheme "Purple"}}#FF00FF{{/match}}{{#match @custom.color_scheme "Green"}}#00FF00{{/match}}{{#match @custom.color_scheme "Orange"}}#FF8C00{{/match}}{{#match @custom.color_scheme "Pink"}}#FF1493{{/match}}{{#match @custom.color_scheme "Slate"}}#708090{{/match}};
+        --primary-color: {{@site.accent_color}};
         --accent-color: {{@site.accent_color}};
-        --container-width: {{#match @custom.container_width "Narrow (4xl)"}}56rem{{/match}}{{#match @custom.container_width "Wide (6xl)"}}72rem{{/match}}{{#match @custom.container_width "Extra Wide (7xl)"}}80rem{{/match}}{{#match @custom.container_width "Full Width"}}100%{{/match}};
-        --letter-spacing: {{#match @custom.letter_spacing "Tight"}}-0.05em{{/match}}{{#match @custom.letter_spacing "Normal"}}0{{/match}}{{#match @custom.letter_spacing "Wide"}}0.1em{{/match}}{{#match @custom.letter_spacing "Extra Wide"}}0.2em{{/match}};
-        --scale-factor: {{#match @custom.typography_scale "Compact"}}0.9{{/match}}{{#match @custom.typography_scale "Standard"}}1{{/match}}{{#match @custom.typography_scale "Large"}}1.2{{/match}}{{#match @custom.typography_scale "Extra Large"}}1.4{{/match}};
+
+
         
         /* Typography */
         --gh-font-heading: var(--gh-font-heading, monospace);

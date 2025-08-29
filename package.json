@@ -2,7 +2,7 @@
     "name": "ghost-starter-theme",
     "description": "A starter theme for Ghost theme development",
     "demo": "https://starter.ghost.io",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "engines": {
         "ghost": ">=5.0.0"
     },
@@ -94,53 +94,10 @@
                 "type": "image",
                 "description": "Custom favicon for your site"
             },
-            "color_scheme": {
-                "type": "select",
-                "options": [
-                    "Blue",
-                    "Purple",
-                    "Green",
-                    "Orange",
-                    "Pink",
-                    "Slate"
-                ],
-                "default": "Blue",
-                "description": "Primary color scheme"
-            },
 
-            "container_width": {
-                "type": "select",
-                "options": [
-                    "Narrow (4xl)",
-                    "Wide (6xl)",
-                    "Extra Wide (7xl)",
-                    "Full Width"
-                ],
-                "default": "Wide (6xl)",
-                "description": "Maximum content width"
-            },
-            "letter_spacing": {
-                "type": "select",
-                "options": [
-                    "Tight",
-                    "Normal",
-                    "Wide",
-                    "Extra Wide"
-                ],
-                "default": "Normal",
-                "description": "Letter spacing for text"
-            },
-            "typography_scale": {
-                "type": "select",
-                "options": [
-                    "Compact",
-                    "Standard",
-                    "Large",
-                    "Extra Large"
-                ],
-                "default": "Standard",
-                "description": "Typography size scale"
-            },
+
+
+
             "layout_style": {
                 "type": "select",
                 "options": [
