@@ -2,7 +2,7 @@
     "name": "ghost-starter-theme",
     "description": "A starter theme for Ghost theme development",
     "demo": "https://starter.ghost.io",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "engines": {
         "ghost": ">=5.0.0"
     },
@@ -107,11 +107,7 @@
                 "default": "Blue",
                 "description": "Primary color scheme"
             },
-            "accent_color": {
-                "type": "color",
-                "default": "#00FF00",
-                "description": "Accent color for highlights"
-            },
+
             "container_width": {
                 "type": "select",
                 "options": [
