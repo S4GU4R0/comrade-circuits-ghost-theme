@@ -80,6 +80,199 @@
             "xl": {
                 "width": 2000
             }
+        },
+        "custom": {
+            "dark_mode": {
+                "type": "boolean",
+                "default": false,
+                "description": "Enable dark mode by default"
+            },
+            "heading_typography": {
+                "type": "select",
+                "options": [
+                    "Space Mono",
+                    "VT323",
+                    "Share Tech Mono",
+                    "Inconsolata",
+                    "Source Code Pro",
+                    "Roboto Mono",
+                    "Anonymous Pro",
+                    "Overpass Mono",
+                    "PT Mono",
+                    "Ubuntu Mono"
+                ],
+                "default": "Space Mono",
+                "description": "Font for headings"
+            },
+            "body_typography": {
+                "type": "select",
+                "options": [
+                    "Space Mono",
+                    "VT323",
+                    "Share Tech Mono",
+                    "Inconsolata",
+                    "Source Code Pro",
+                    "Roboto Mono",
+                    "Anonymous Pro",
+                    "Overpass Mono",
+                    "PT Mono",
+                    "Ubuntu Mono"
+                ],
+                "default": "Roboto Mono",
+                "description": "Font for body text"
+            },
+            "favicon": {
+                "type": "image",
+                "description": "Custom favicon for your site"
+            },
+            "color_scheme": {
+                "type": "select",
+                "options": [
+                    "Blue",
+                    "Purple",
+                    "Green",
+                    "Orange",
+                    "Pink",
+                    "Slate"
+                ],
+                "default": "Blue",
+                "description": "Primary color scheme"
+            },
+            "accent_color": {
+                "type": "color",
+                "default": "#00FF00",
+                "description": "Accent color for highlights"
+            },
+            "container_width": {
+                "type": "select",
+                "options": [
+                    "Narrow (4xl)",
+                    "Wide (6xl)",
+                    "Extra Wide (7xl)",
+                    "Full Width"
+                ],
+                "default": "Wide (6xl)",
+                "description": "Maximum content width"
+            },
+            "letter_spacing": {
+                "type": "select",
+                "options": [
+                    "Tight",
+                    "Normal",
+                    "Wide",
+                    "Extra Wide"
+                ],
+                "default": "Normal",
+                "description": "Letter spacing for text"
+            },
+            "typography_scale": {
+                "type": "select",
+                "options": [
+                    "Compact",
+                    "Standard",
+                    "Large",
+                    "Extra Large"
+                ],
+                "default": "Standard",
+                "description": "Typography size scale"
+            },
+            "layout_style": {
+                "type": "select",
+                "options": [
+                    "Card Grid",
+                    "List View",
+                    "Masonry",
+                    "Magazine"
+                ],
+                "default": "Card Grid",
+                "description": "Layout style for post listings"
+            },
+            "custom_logo": {
+                "type": "image",
+                "description": "Custom logo image"
+            },
+            "enable_search": {
+                "type": "boolean",
+                "default": true,
+                "description": "Enable search functionality"
+            },
+            "footer_text": {
+                "type": "text",
+                "default": "Powered by Ghost",
+                "description": "Custom footer text"
+            },
+            "copyright_year": {
+                "type": "text",
+                "description": "Custom copyright year (leave empty for current year)"
+            },
+            "social_twitter": {
+                "type": "text",
+                "description": "Twitter username (without @)"
+            },
+            "social_github": {
+                "type": "text",
+                "description": "GitHub username"
+            },
+            "social_linkedin": {
+                "type": "url",
+                "description": "LinkedIn profile URL"
+            },
+            "show_hero_section": {
+                "type": "boolean",
+                "default": true,
+                "description": "Show/hide the hero section on homepage"
+            },
+            "heading_case": {
+                "type": "select",
+                "options": [
+                    "Default",
+                    "UPPERCASE",
+                    "lowercase"
+                ],
+                "default": "Default",
+                "description": "Text case for headings"
+            },
+            "hero_title": {
+                "type": "text",
+                "description": "Custom hero title (overrides site title)"
+            },
+            "hero_subtitle": {
+                "type": "text",
+                "default": "A community of developers, sysadmins, and digital rebels",
+                "description": "Subtitle text displayed in the hero section"
+            },
+            "show_hosted_sites": {
+                "type": "boolean",
+                "default": true,
+                "description": "Show the hosted sites section"
+            },
+            "hosted_sites_title": {
+                "type": "text",
+                "default": "Hosted Sites",
+                "description": "Title for the hosted sites section"
+            },
+            "hosted_sites_limit": {
+                "type": "select",
+                "options": [
+                    "All",
+                    "3",
+                    "6",
+                    "9",
+                    "12"
+                ],
+                "default": "6",
+                "description": "Number of hosted sites to display"
+            },
+            "post_cta_text": {
+                "type": "text",
+                "default": "Be part of something bigger. Join our collective of independent developers and digital creators.",
+                "description": "Call-to-action text"
+            },
+            "show_reading_time": {
+                "type": "boolean",
+                "default": true,
+                "description": "Show reading time on posts"
+            }
         }
     },
     "type": "module"

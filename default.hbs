@@ -1,79 +1,161 @@
 <!DOCTYPE html>
-<html lang="{{@site.locale}}">
+<html lang="{{@site.locale}}"{{#match @custom.dark_mode true}} class="dark-mode"{{/match}}>
 <head>
-
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{{asset "built/index.css"}}" />
-    <script src="{{asset "built/index.js"}}" defer></script>
-
+    <meta charset="utf-8">
     <title>{{meta_title}}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {{!-- Early 2000s Font Loading --}}
+    <link rel="preconnect" href="https://api.fonts.coollabs.io" crossorigin>
+    <link href="https://api.fonts.coollabs.io/css2?family={{#match @custom.heading_typography "Space Mono"}}Space+Mono:wght@400;700{{/match}}{{#match @custom.heading_typography "VT323"}}VT323{{/match}}{{#match @custom.heading_typography "Share Tech Mono"}}Share+Tech+Mono{{/match}}{{#match @custom.heading_typography "Inconsolata"}}Inconsolata:wght@400;700{{/match}}{{#match @custom.heading_typography "Source Code Pro"}}Source+Code+Pro:wght@400;700{{/match}}{{#match @custom.heading_typography "Roboto Mono"}}Roboto+Mono:wght@400;700{{/match}}{{#match @custom.heading_typography "Anonymous Pro"}}Anonymous+Pro:wght@400;700{{/match}}{{#match @custom.heading_typography "Overpass Mono"}}Overpass+Mono:wght@400;700{{/match}}{{#match @custom.heading_typography "PT Mono"}}PT+Mono{{/match}}{{#match @custom.heading_typography "Ubuntu Mono"}}Ubuntu+Mono:wght@400;700{{/match}}&family={{#match @custom.body_typography "Space Mono"}}Space+Mono:wght@400;700{{/match}}{{#match @custom.body_typography "VT323"}}VT323{{/match}}{{#match @custom.body_typography "Share Tech Mono"}}Share+Tech+Mono{{/match}}{{#match @custom.body_typography "Inconsolata"}}Inconsolata:wght@400;700{{/match}}{{#match @custom.body_typography "Source Code Pro"}}Source+Code+Pro:wght@400;700{{/match}}{{#match @custom.body_typography "Roboto Mono"}}Roboto+Mono:wght@400;700{{/match}}{{#match @custom.body_typography "Anonymous Pro"}}Anonymous+Pro:wght@400;700{{/match}}{{#match @custom.body_typography "Overpass Mono"}}Overpass+Mono:wght@400;700{{/match}}{{#match @custom.body_typography "PT Mono"}}PT+Mono{{/match}}{{#match @custom.body_typography "Ubuntu Mono"}}Ubuntu+Mono:wght@400;700{{/match}}&display=swap" rel="stylesheet">
+
+    {{!-- Favicon --}}
+    {{#if @custom.favicon}}
+        <link rel="icon" href="{{@custom.favicon}}" type="image/x-icon">
+    {{/if}}
+
+    {{!-- Dynamic CSS Variables --}}
+    <style>
+    :root {
+        --primary-color: {{#match @custom.color_scheme "Blue"}}#00BFFF{{/match}}{{#match @custom.color_scheme "Purple"}}#FF00FF{{/match}}{{#match @custom.color_scheme "Green"}}#00FF00{{/match}}{{#match @custom.color_scheme "Orange"}}#FF8C00{{/match}}{{#match @custom.color_scheme "Pink"}}#FF1493{{/match}}{{#match @custom.color_scheme "Slate"}}#708090{{/match}};
+        --accent-color: {{@custom.accent_color}};
+        --heading-font: '{{@custom.heading_typography}}', monospace;
+        --body-font: '{{@custom.body_typography}}', monospace;
+        --container-width: {{#match @custom.container_width "Narrow (4xl)"}}56rem{{/match}}{{#match @custom.container_width "Wide (6xl)"}}72rem{{/match}}{{#match @custom.container_width "Extra Wide (7xl)"}}80rem{{/match}}{{#match @custom.container_width "Full Width"}}100%{{/match}};
+        --letter-spacing: {{#match @custom.letter_spacing "Tight"}}-0.05em{{/match}}{{#match @custom.letter_spacing "Normal"}}0{{/match}}{{#match @custom.letter_spacing "Wide"}}0.1em{{/match}}{{#match @custom.letter_spacing "Extra Wide"}}0.2em{{/match}};
+        --scale-factor: {{#match @custom.typography_scale "Compact"}}0.9{{/match}}{{#match @custom.typography_scale "Standard"}}1{{/match}}{{#match @custom.typography_scale "Large"}}1.2{{/match}}{{#match @custom.typography_scale "Extra Large"}}1.4{{/match}};
+    }
+    </style>
 
     {{ghost_head}}
-    {{!-- Outputs important meta data and settings, should always be in <head> --}}
-
 </head>
-<body class="{{body_class}}">
-<div class="gh-viewport">
+<body class="{{body_class}} 
+    {{#match @custom.color_scheme "Blue"}}theme-blue{{/match}}
+    {{#match @custom.color_scheme "Purple"}}theme-purple{{/match}}
+    {{#match @custom.color_scheme "Green"}}theme-green{{/match}}
+    {{#match @custom.color_scheme "Orange"}}theme-orange{{/match}}
+    {{#match @custom.color_scheme "Pink"}}theme-pink{{/match}}
+    {{#match @custom.color_scheme "Slate"}}theme-slate{{/match}}
+    {{#match @custom.layout_style "Card Grid"}}layout-grid{{/match}}
+    {{#match @custom.layout_style "List View"}}layout-list{{/match}}
+    {{#match @custom.layout_style "Masonry"}}layout-masonry{{/match}}
+    {{#match @custom.layout_style "Magazine"}}layout-magazine{{/match}}
+">
 
-<header id="gh-head" class="gh-head">
-    <nav class="gh-head-inner gh-container">
-
-        <div class="gh-head-brand">
-            <a class="gh-head-logo" href="{{@site.url}}">
-                {{#if @site.logo}}
-                    <img src="{{@site.logo}}" alt="{{@site.title}}" />
-                {{else}}
-                    {{@site.title}}
-                {{/if}}
-            </a>
-            <a class="gh-burger" role="button" aria-label="menu">
-                <div class="gh-burger-box">
-                    <div class="gh-burger-inner"></div>
-                </div>
-            </a>
-        </div>
-        <div class="gh-head-menu">
-            {{navigation}}
-        </div>
-        <div class="gh-head-actions">
-            <div class="gh-head-actions-list">
-                {{search}}
-                {{#if @site.members_enabled}}
-                    {{^if @member}}
-                    <a class="gh-button" href="{{@site.signup_url}}">Subscribe</a>
+    {{!-- Header --}}
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                {{!-- Logo/Title --}}
+                <div class="site-branding">
+                    {{#if @custom.custom_logo}}
+                        <a href="{{@site.url}}" class="site-logo">
+                            <img src="{{@custom.custom_logo}}" alt="{{@site.title}}">
+                        </a>
                     {{else}}
-                    <a class="gh-button" href="#/portal/account">Account</a>
+                        <a href="{{@site.url}}" class="site-title-link">
+                            <h1 class="site-title">{{@site.title}}</h1>
+                        </a>
                     {{/if}}
-                {{/if}}
+                </div>
+
+                {{!-- Navigation --}}
+                <nav class="site-nav">
+                    {{navigation}}
+                    
+                    {{!-- Search Button --}}
+                    {{#if @custom.enable_search}}
+                        <button class="search-btn" data-portal="search">[SEARCH]</button>
+                    {{/if}}
+                </nav>
+            </div>
+            
+            {{!-- Early 2000s Decorative Elements --}}
+            <div class="header-decoration">
+                <div class="blink-bars">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+                <div class="scan-line"></div>
             </div>
         </div>
-    </nav>
-</header>
+    </header>
 
-<main class="gh-main">
-
+    {{!-- Main Content --}}
+    <main class="site-main">
     {{{body}}}
-    {{!-- All content gets inserted here, index.hbs, post.hbs, etc --}}
+    </main>
 
-</main>
-
-<footer class="gh-foot">
-    <div class="gh-container">
-        <div class="gh-foot-menu">
-            {{navigation type="secondary"}}
+    {{!-- Footer --}}
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-text">
+                    <p>{{#if @custom.footer_text}}{{@custom.footer_text}}{{else}}Powered by Ghost{{/if}}</p>
+                    <p>&copy; {{#if @custom.copyright_year}}{{@custom.copyright_year}}{{else}}{{date format="YYYY"}}{{/if}} {{@site.title}}</p>
+                </div>
+                
+                {{!-- Social Links --}}
+                <div class="footer-social">
+                    {{#if @custom.social_twitter}}
+                        <a href="https://twitter.com/{{@custom.social_twitter}}" target="_blank" class="social-link">[TWITTER]</a>
+                    {{/if}}
+                    {{#if @custom.social_github}}
+                        <a href="https://github.com/{{@custom.social_github}}" target="_blank" class="social-link">[GITHUB]</a>
+                    {{/if}}
+                    {{#if @custom.social_linkedin}}
+                        <a href="{{@custom.social_linkedin}}" target="_blank" class="social-link">[LINKEDIN]</a>
+                    {{/if}}
+                </div>
+            </div>
+            
+            <div class="footer-decoration">
+                <pre class="ascii-footer">
+╔════════════════════════════════════════╗
+║        TECH COLLECTIVE NETWORK         ║
+╚════════════════════════════════════════╝
+                </pre>
+            </div>
         </div>
-        <div class="gh-foot-meta">
-            Published with <a href="https://ghost.org" target="_blank" rel="noopener">Ghost</a>
-        </div>
-    </div>
-</footer>
+    </footer>
 
-</div>
+    {{!-- Early 2000s JavaScript Effects --}}
+    <script>
+        // Blinking animation
+        function startBlinking() {
+            const blinkElements = document.querySelectorAll('.blink-bars .bar');
+            blinkElements.forEach((bar, index) => {
+                setInterval(() => {
+                    bar.style.opacity = bar.style.opacity == '0' ? '1' : '0';
+                }, 800 + (index * 200));
+            });
+        }
 
-{{!-- <foot> --}}
-{{ghost_foot}}
-{{!-- Outputs important scripts - should always be included before closing body tag --}}
+        // Matrix-style scroll effect
+        function matrixScroll() {
+            const chars = '01';
+            const drops = [];
+            
+            for (let x = 0; x < 10; x++) {
+                drops[x] = Math.random() * 50;
+            }
+        }
 
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', function() {
+            startBlinking();
+            
+            // Add "loading" effect
+            const body = document.body;
+            body.style.opacity = '0';
+            setTimeout(() => {
+                body.style.transition = 'opacity 0.5s';
+                body.style.opacity = '1';
+            }, 100);
+        });
+    </script>
+
+    {{ghost_foot}}
 </body>
 </html>

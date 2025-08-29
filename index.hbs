@@ -1,20 +1,229 @@
 {{!< default}}
-<div class="gh-page">
-    <div class="gh-container">
 
-        <div class="gh-postfeed">
-        {{#foreach posts}}
-
-            {{> "card" page=../pagination.page }} {{!-- partials/card.hbs --}}
-
-        {{/foreach}}
+{{!-- Hero Section --}}
+{{#if @custom.show_hero_section}}
+<section class="hero-section">
+    <div class="hero-content">
+        {{#if @custom.custom_logo}}
+            <img src="{{@custom.custom_logo}}" alt="{{@site.title}}" class="logo">
+        {{/if}}
+        
+        <h1 class="site-title {{#match @custom.heading_case "UPPERCASE"}}uppercase{{/match}}{{#match @custom.heading_case "lowercase"}}lowercase{{/match}}">
+            {{#if @custom.hero_title}}
+                {{@custom.hero_title}}
+            {{else}}
+                {{@site.title}}
+            {{/if}}
+        </h1>
+        
+        {{#if @custom.hero_subtitle}}
+            <p class="hero-subtitle">{{@custom.hero_subtitle}}</p>
+        {{else}}
+            <p class="hero-subtitle">{{@site.description}}</p>
+        {{/if}}
+        
+        <div class="hero-buttons">
+            <a href="#about" class="btn btn-primary">[LEARN MORE]</a>
+            {{#if @custom.enable_search}}
+                <a href="#" class="btn btn-secondary" data-portal="search">[SEARCH]</a>
+            {{/if}}
         </div>
-
-        {{!-- If JS isn't enabled, fallback to standard pagination --}}
-        <noscript>
-            <div class="gh-pagination">
-                {{pagination}}
-            </div>
-        </noscript>
     </div>
-</div>
+    
+    {{!-- Y2K style decorative elements --}}
+    <div class="retro-decorations">
+        <div class="matrix-bg"></div>
+        <div class="scan-lines"></div>
+    </div>
+</section>
+{{/if}}
+
+    {{!-- About Section --}}
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2>{{#match @custom.heading_case "UPPERCASE"}}ABOUT THE COLLECTIVE{{/match}}{{#match @custom.heading_case "lowercase"}}about the collective{{/match}}{{#unless @custom.heading_case}}About the Collective{{/unless}}</h2>
+            
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>Welcome to our tech collective - a community of developers, sysadmins, and digital rebels keeping the independent web alive.</p>
+                    
+                    <p>We host sites, share knowledge, and build tools that matter. No corporate nonsense, just good tech and good people.</p>
+                    
+                    <div class="stats-box">
+                        <div class="stat">
+                            <span class="stat-number">∞</span>
+                            <span class="stat-label">Lines of Code</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">24/7</span>
+                            <span class="stat-label">Uptime Goal</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">1337</span>
+                            <span class="stat-label">Status Level</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="terminal-box">
+                    <div class="terminal-header">
+                        <span class="terminal-title">~/collective/status</span>
+                        <div class="terminal-buttons">
+                            <span class="btn-close">×</span>
+                            <span class="btn-minimize">−</span>
+                            <span class="btn-maximize">□</span>
+                        </div>
+                    </div>
+                    <div class="terminal-content">
+                        <p><span class="prompt">$</span> whoami</p>
+                        <p class="output">tech-collective-member</p>
+                        <p><span class="prompt">$</span> ls -la skills/</p>
+                        <p class="output">hosting.sh   coding.py   debugging.js</p>
+                        <p class="output">teaching.md  learning.txt building.exe</p>
+                        <p><span class="prompt">$</span> ./mission.sh</p>
+                        <p class="output">Building the future, one commit at a time...</p>
+                        <p class="cursor">_</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {{!-- Services/Hosted Sites Section --}}
+    {{#if @custom.show_hosted_sites}}
+        {{#match @site.recommendations_enabled}}
+        <section class="hosted-sites-section">
+            <div class="container">
+                <h2>{{@custom.hosted_sites_title}}</h2>
+                
+                <div class="sites-grid">
+                    {{#match @custom.hosted_sites_limit "All"}}
+                        {{#recommendations}}
+                        <div class="site-card">
+                            {{#if favicon}}
+                                <img src="{{favicon}}" alt="{{title}}" class="site-favicon">
+                            {{else}}
+                                <div class="default-favicon">🌐</div>
+                            {{/if}}
+                            <div class="site-info">
+                                <h3><a href="{{url}}" target="_blank" rel="noopener">{{title}}</a></h3>
+                                {{#if description}}
+                                    <p>{{description}}</p>
+                                {{/if}}
+                                <span class="site-url">{{readable_url}}</span>
+                            </div>
+                            <div class="visit-link">
+                                <a href="{{url}}" target="_blank" rel="noopener">[VISIT]</a>
+                            </div>
+                        </div>
+                        {{/recommendations}}
+                    {{else}}
+                        {{#recommendations limit=@custom.hosted_sites_limit}}
+                        <div class="site-card">
+                            {{#if favicon}}
+                                <img src="{{favicon}}" alt="{{title}}" class="site-favicon">
+                            {{else}}
+                                <div class="default-favicon">🌐</div>
+                            {{/if}}
+                            <div class="site-info">
+                                <h3><a href="{{url}}" target="_blank" rel="noopener">{{title}}</a></h3>
+                                {{#if description}}
+                                    <p>{{description}}</p>
+                                {{/if}}
+                                <span class="site-url">{{readable_url}}</span>
+                            </div>
+                            <div class="visit-link">
+                                <a href="{{url}}" target="_blank" rel="noopener">[VISIT]</a>
+                            </div>
+                        </div>
+                        {{/recommendations}}
+                    {{/match}}
+                </div>
+                
+                <div class="webring-style">
+                    <p>← <a href="#" onclick="randomSite()">Random Site</a> | <a href="#" onclick="nextSite()">Next Site</a> →</p>
+                </div>
+            </div>
+        </section>
+        {{/match}}
+    {{/if}}
+
+    {{!-- Contact/Links Section --}}
+    <section class="contact-section">
+        <div class="container">
+            <h2>{{#match @custom.heading_case "UPPERCASE"}}GET IN TOUCH{{/match}}{{#match @custom.heading_case "lowercase"}}get in touch{{/match}}{{#unless @custom.heading_case}}Get in Touch{{/unless}}</h2>
+            
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <p>Want to join our collective? Got a project that needs hosting? Just want to talk tech?</p>
+                    
+                    <div class="contact-methods">
+                        {{#if @custom.social_twitter}}
+                            <p>📧 Twitter: <a href="https://twitter.com/{{@custom.social_twitter}}" target="_blank">@{{@custom.social_twitter}}</a></p>
+                        {{/if}}
+                        {{#if @custom.social_github}}
+                            <p>🔧 GitHub: <a href="https://github.com/{{@custom.social_github}}" target="_blank">{{@custom.social_github}}</a></p>
+                        {{/if}}
+                        {{#if @custom.social_linkedin}}
+                            <p>💼 LinkedIn: <a href="{{@custom.social_linkedin}}" target="_blank">Connect</a></p>
+                        {{/if}}
+                    </div>
+                </div>
+                
+                <div class="ascii-art">
+                    <pre>
+    ╔══════════════════╗
+    ║ TECH COLLECTIVE  ║
+    ║ ════════════════ ║
+    ║ [█] Building     ║
+    ║ [█] Hosting      ║
+    ║ [█] Teaching     ║
+    ║ [█] Learning     ║
+    ╚══════════════════╝
+    </pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {{!-- Footer CTA --}}
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-box">
+                <h3>Ready to Join?</h3>
+                <p>{{@custom.post_cta_text}}</p>
+                <div class="cta-buttons">
+                    <a href="#/portal/signup" class="btn btn-neon" data-portal="signup">Join the Collective</a>
+                    <a href="#/portal/" class="btn btn-outline" data-portal="">Member Login</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<script>
+// Early 2000s style JavaScript
+function randomSite() {
+    const sites = document.querySelectorAll('.site-card a');
+    if (sites.length > 0) {
+        const randomIndex = Math.floor(Math.random() * sites.length);
+        sites[randomIndex].click();
+    }
+}
+
+function nextSite() {
+    const sites = document.querySelectorAll('.site-card a');
+    if (sites.length > 0) {
+        const randomIndex = Math.floor(Math.random() * sites.length);
+        sites[randomIndex].click();
+    }
+}
+
+// Blinking cursor animation
+setInterval(function() {
+    const cursor = document.querySelector('.cursor');
+    if (cursor) {
+        cursor.style.opacity = cursor.style.opacity == '0' ? '1' : '0';
+    }
+}, 500);
+</script>
