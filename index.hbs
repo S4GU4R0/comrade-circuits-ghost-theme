@@ -1,93 +1,118 @@
-{{!< default}}
+{{!-- Cyberpunk Homepage --}}
 
-{{!-- Hero Section --}}
+{{!-- Hero Section with Neon Effects --}}
 {{#if @custom.show_hero_section}}
-<section class="hero-section">
-    <div class="hero-content">
-        {{#if @custom.custom_logo}}
-            <img src="{{@custom.custom_logo}}" alt="{{@site.title}}" class="logo">
-        {{/if}}
-        
-        <h1 class="site-title {{#match @custom.heading_case "UPPERCASE"}}uppercase{{/match}}{{#match @custom.heading_case "lowercase"}}lowercase{{/match}}">
-            {{#if @custom.hero_title}}
-                {{@custom.hero_title}}
-            {{else}}
-                {{@site.title}}
-            {{/if}}
-        </h1>
-        
-        {{#if @custom.hero_subtitle}}
-            <p class="hero-subtitle">{{@custom.hero_subtitle}}</p>
-        {{else}}
-            <p class="hero-subtitle">{{@site.description}}</p>
-        {{/if}}
-        
-        <div class="hero-buttons">
-            <a href="#about" class="btn btn-primary">[LEARN MORE]</a>
+<section class="gh-hero">
+    <div class="gh-hero-inner">
+        <div class="gh-hero-content">
+            <h1 class="gh-hero-title">
+                {{#if @custom.hero_title}}
+                    {{@custom.hero_title}}
+                {{else}}
+                    {{@site.title}}
+                {{/if}}
+            </h1>
+            <p class="gh-hero-subtitle">
+                {{#if @custom.hero_subtitle}}
+                    {{@custom.hero_subtitle}}
+                {{else}}
+                    {{@site.description}}
+                {{/if}}
+            </p>
+                    <div class="gh-hero-actions">
+            <a href="#posts" class="gh-button gh-button-primary">EXPLORE POSTS</a>
             {{#if @custom.enable_search}}
-                <a href="#" class="btn btn-secondary" data-portal="search">[SEARCH]</a>
+                <a href="#" class="gh-button gh-button-secondary" data-portal="search">SEARCH</a>
             {{/if}}
         </div>
-    </div>
-    
-    {{!-- Y2K style decorative elements --}}
-    <div class="retro-decorations">
-        <div class="matrix-bg"></div>
-        <div class="scan-lines"></div>
+        </div>
+        
+        {{!-- Animated Background Elements --}}
+        <div class="gh-hero-bg">
+            <div class="matrix-rain"></div>
+            <div class="circuit-lines"></div>
+            <div class="neon-grid"></div>
+        </div>
     </div>
 </section>
 {{/if}}
 
-    {{!-- About Section --}}
-    <section id="about" class="about-section">
-        <div class="container">
-            <h2>{{#match @custom.heading_case "UPPERCASE"}}ABOUT THE COLLECTIVE{{/match}}{{#match @custom.heading_case "lowercase"}}about the collective{{/match}}{{#unless @custom.heading_case}}About the Collective{{/unless}}</h2>
+{{!-- Featured Posts Section --}}
+<section id="posts" class="gh-posts">
+    <div class="gh-posts-header">
+        <h2 class="gh-posts-title">LATEST TRANSMISSIONS</h2>
+        <div class="gh-posts-subtitle">Recent posts from the collective</div>
+    </div>
+
+    {{!-- Posts Grid with Neon Cards --}}
+    <div class="gh-postfeed">
+        {{#foreach posts}}
+            <article class="gh-card">
+                <a href="{{url}}" class="gh-card-link">
+                    {{#if feature_image}}
+                        <div class="gh-card-image">
+                            <img src="{{feature_image}}" alt="{{title}}">
+                            <div class="gh-card-overlay">
+                                <div class="gh-card-readmore">READ MORE</div>
+                            </div>
+                        </div>
+                    {{/if}}
+                    
+                    <div class="gh-card-content">
+                        <header class="gh-card-header">
+                            <h3 class="gh-card-title">{{title}}</h3>
+                            {{#if excerpt}}
+                                <p class="gh-card-excerpt">{{excerpt}}</p>
+                            {{/if}}
+                        </header>
+                        
+                        <footer class="gh-card-meta">
+                            <div class="gh-card-author">
+                                {{#if primary_author.profile_image}}
+                                    <img src="{{primary_author.profile_image}}" alt="{{primary_author.name}}">
+                                {{/if}}
+                                <span>{{primary_author.name}}</span>
+                            </div>
+                            <time class="gh-card-date" datetime="{{date format="YYYY-MM-DD"}}">
+                                {{date format="MMM DD, YYYY"}}
+                            </time>
+                            {{#if reading_time}}
+                                <span class="gh-card-reading-time">{{reading_time}} min read</span>
+                            {{/if}}
+                        </footer>
+                    </div>
+                </a>
+            </article>
+        {{/foreach}}
+    </div>
+
+    {{!-- Pagination with Neon Effects --}}
+    {{#if pagination}}
+        <div class="gh-pagination">
+            {{#if pagination.prev}}
+                <a href="{{pagination.prev}}" class="gh-button gh-button-secondary">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                    </svg>
+                    PREVIOUS
+                </a>
+            {{/if}}
             
-            <div class="about-grid">
-                <div class="about-text">
-                    <p>Welcome to our tech collective - a community of developers, sysadmins, and digital rebels keeping the independent web alive.</p>
-                    
-                    <p>We host sites, share knowledge, and build tools that matter. No corporate nonsense, just good tech and good people.</p>
-                    
-                    <div class="stats-box">
-                        <div class="stat">
-                            <span class="stat-number">∞</span>
-                            <span class="stat-label">Lines of Code</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">24/7</span>
-                            <span class="stat-label">Uptime Goal</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">1337</span>
-                            <span class="stat-label">Status Level</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="terminal-box">
-                    <div class="terminal-header">
-                        <span class="terminal-title">~/collective/status</span>
-                        <div class="terminal-buttons">
-                            <span class="btn-close">×</span>
-                            <span class="btn-minimize">−</span>
-                            <span class="btn-maximize">□</span>
-                        </div>
-                    </div>
-                    <div class="terminal-content">
-                        <p><span class="prompt">$</span> whoami</p>
-                        <p class="output">tech-collective-member</p>
-                        <p><span class="prompt">$</span> ls -la skills/</p>
-                        <p class="output">hosting.sh   coding.py   debugging.js</p>
-                        <p class="output">teaching.md  learning.txt building.exe</p>
-                        <p><span class="prompt">$</span> ./mission.sh</p>
-                        <p class="output">Building the future, one commit at a time...</p>
-                        <p class="cursor">_</p>
-                    </div>
-                </div>
+            <div class="gh-pagination-info">
+                Page {{pagination.page}} of {{pagination.pages}}
             </div>
+            
+            {{#if pagination.next}}
+                <a href="{{pagination.next}}" class="gh-button gh-button-secondary">
+                    NEXT
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                    </svg>
+                </a>
+            {{/if}}
         </div>
-    </section>
+    {{/if}}
+</section>
 
     {{!-- Services/Hosted Sites Section --}}
     {{#if @custom.show_hosted_sites}}

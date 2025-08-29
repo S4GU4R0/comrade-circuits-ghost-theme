@@ -2,11 +2,11 @@
 /* ---------------------------------------------------------- */
 
 :root {
-    /* Color Palette */
-    --color-bg-primary: #0a0a0a;
-    --color-bg-secondary: #1a1a1a;
-    --color-bg-tertiary: #2a2a2a;
-    --color-bg-card: #1e1e1e;
+    /* Color Palette - will be overridden by media queries */
+    --color-bg-primary: #ffffff;
+    --color-bg-secondary: #f8f9fa;
+    --color-bg-tertiary: #e9ecef;
+    --color-bg-card: #ffffff;
     --color-bg-overlay: rgba(0, 0, 0, 0.8);
     
     /* Neon Colors */
@@ -17,17 +17,17 @@
     --color-neon-orange: #ff6600;
     --color-neon-purple: #8a2be2;
     
-    /* Text Colors */
-    --color-text-primary: #ffffff;
-    --color-text-secondary: #b0b0b0;
-    --color-text-muted: #808080;
+    /* Text Colors - will be overridden by media queries */
+    --color-text-primary: #212529;
+    --color-text-secondary: #6c757d;
+    --color-text-muted: #adb5bd;
     --color-text-accent: var(--color-neon-cyan);
     --color-text-link: var(--color-neon-pink);
     --color-text-link-hover: var(--color-neon-cyan);
     
-    /* Border Colors */
-    --color-border-primary: #333333;
-    --color-border-secondary: #444444;
+    /* Border Colors - will be overridden by media queries */
+    --color-border-primary: #dee2e6;
+    --color-border-secondary: #ced4da;
     --color-border-accent: var(--color-neon-cyan);
     --color-border-glow: var(--color-neon-pink);
     
@@ -91,22 +91,36 @@
     --animation-flicker: flicker 0.15s infinite linear;
 }
 
-/* Dark mode (default for cyberpunk) */
+/* Dark mode */
 @media (prefers-color-scheme: dark) {
     :root {
-        /* Override any light mode preferences for cyberpunk theme */
         --color-bg-primary: #0a0a0a;
         --color-bg-secondary: #1a1a1a;
+        --color-bg-tertiary: #2a2a2a;
+        --color-bg-card: #1e1e1e;
         --color-text-primary: #ffffff;
+        --color-text-secondary: #b0b0b0;
+        --color-text-muted: #808080;
+        --color-border-primary: #333333;
+        --color-border-secondary: #444444;
+        --shadow-dark: 0 4px 6px rgba(0, 0, 0, 0.3);
+        --shadow-glow: 0 0 20px rgba(0, 255, 255, 0.3);
     }
 }
 
-/* Light mode fallback (if needed) */
+/* Light mode */
 @media (prefers-color-scheme: light) {
     :root {
-        /* Keep dark theme even in light mode preference */
-        --color-bg-primary: #0a0a0a;
-        --color-bg-secondary: #1a1a1a;
-        --color-text-primary: #ffffff;
+        --color-bg-primary: #ffffff;
+        --color-bg-secondary: #f8f9fa;
+        --color-bg-tertiary: #e9ecef;
+        --color-bg-card: #ffffff;
+        --color-text-primary: #212529;
+        --color-text-secondary: #6c757d;
+        --color-text-muted: #adb5bd;
+        --color-border-primary: #dee2e6;
+        --color-border-secondary: #ced4da;
+        --shadow-dark: 0 4px 6px rgba(0, 0, 0, 0.1);
+        --shadow-glow: 0 0 20px rgba(0, 255, 255, 0.2);
     }
 }
