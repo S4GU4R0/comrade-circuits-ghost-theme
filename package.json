@@ -214,7 +214,7 @@
                 "description": "GitHub username"
             },
             "social_linkedin": {
-                "type": "url",
+                "type": "text",
                 "description": "LinkedIn profile URL"
             },
             "show_hero_section": {
