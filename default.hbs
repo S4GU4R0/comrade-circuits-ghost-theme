@@ -7,25 +7,481 @@
 
     {{!-- Styles --}}
     <link rel="stylesheet" href="{{asset "built/index.css"}}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet">
 
     {{!-- Favicon --}}
     {{#if @custom.favicon}}
         <link rel="icon" href="{{@custom.favicon}}" type="image/x-icon">
     {{/if}}
 
-
-
-    {{!-- Dynamic CSS Variables --}}
+    {{!-- Cyberpunk CSS --}}
     <style>
     :root {
-        --primary-color: {{@site.accent_color}};
-        --accent-color: {{@site.accent_color}};
-
-
+        /* Cyberpunk Color Palette */
+        --neon-cyan: #00ffff;
+        --neon-pink: #ff0080;
+        --neon-green: #00ff41;
+        --neon-purple: #8a2be2;
+        --electric-blue: #0040ff;
+        --dark-bg: #0a0a0f;
+        --darker-bg: #050507;
+        --card-bg: rgba(20, 20, 30, 0.8);
+        --border-glow: rgba(0, 255, 255, 0.3);
+        
+        --primary-color: var(--neon-cyan);
+        --accent-color: var(--neon-pink);
         
         /* Typography */
-        --gh-font-heading: var(--gh-font-heading, monospace);
-        --gh-font-body: var(--gh-font-body, monospace);
+        --gh-font-heading: 'Orbitron', 'Courier New', monospace;
+        --gh-font-body: 'Rajdhani', 'Courier New', monospace;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        background: linear-gradient(135deg, #0a0a0f 0%, #1a0a2e 50%, #16213e 100%);
+        background-attachment: fixed;
+        color: var(--neon-cyan);
+        font-family: var(--gh-font-body);
+        margin: 0;
+        padding: 0;
+        position: relative;
+        overflow-x: hidden;
+    }
+
+    /* Animated Grid Background */
+    body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-image: 
+            linear-gradient(rgba(0,255,255,0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(0,255,255,0.03) 1px, transparent 1px);
+        background-size: 50px 50px;
+        animation: gridMove 20s linear infinite;
+        pointer-events: none;
+        z-index: -1;
+    }
+
+    @keyframes gridMove {
+        0% { transform: translate(0, 0); }
+        100% { transform: translate(50px, 50px); }
+    }
+
+    /* Glitch Effect */
+    .glitch {
+        position: relative;
+        color: var(--neon-cyan);
+        font-weight: bold;
+    }
+
+    .glitch::before,
+    .glitch::after {
+        content: attr(data-text);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .glitch::before {
+        animation: glitch-1 0.5s infinite;
+        color: var(--neon-pink);
+        z-index: -1;
+    }
+
+    .glitch::after {
+        animation: glitch-2 0.5s infinite;
+        color: var(--neon-green);
+        z-index: -2;
+    }
+
+    @keyframes glitch-1 {
+        0%, 14%, 15%, 49%, 50%, 99%, 100% {
+            transform: translate(0);
+        }
+        15%, 49% {
+            transform: translate(-2px, 2px);
+        }
+    }
+
+    @keyframes glitch-2 {
+        0%, 20%, 21%, 62%, 63%, 99%, 100% {
+            transform: translate(0);
+        }
+        21%, 62% {
+            transform: translate(2px, -2px);
+        }
+    }
+
+    /* Header Styles */
+    .site-header {
+        background: linear-gradient(180deg, rgba(10, 10, 15, 0.9) 0%, rgba(26, 10, 46, 0.8) 100%);
+        backdrop-filter: blur(10px);
+        border-bottom: 2px solid var(--neon-cyan);
+        box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+        position: relative;
+        z-index: 100;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 0;
+        position: relative;
+    }
+
+    .site-title-link {
+        text-decoration: none;
+    }
+
+    .site-title {
+        font-family: var(--gh-font-heading);
+        font-size: 2.5rem;
+        font-weight: 900;
+        margin: 0;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        background: linear-gradient(45deg, var(--neon-cyan), var(--neon-pink), var(--neon-green));
+        background-size: 200% 200%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: neonGlow 3s ease-in-out infinite alternate;
+        position: relative;
+    }
+
+    @keyframes neonGlow {
+        0% {
+            background-position: 0% 50%;
+            filter: brightness(1) drop-shadow(0 0 10px var(--neon-cyan));
+        }
+        50% {
+            background-position: 100% 50%;
+            filter: brightness(1.2) drop-shadow(0 0 20px var(--neon-pink));
+        }
+        100% {
+            background-position: 0% 50%;
+            filter: brightness(1) drop-shadow(0 0 15px var(--neon-green));
+        }
+    }
+
+    .site-logo img {
+        max-height: 60px;
+        filter: drop-shadow(0 0 10px var(--neon-cyan));
+    }
+
+    /* Navigation */
+    .site-nav {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .site-nav a {
+        color: var(--neon-cyan);
+        text-decoration: none;
+        font-family: var(--gh-font-heading);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        padding: 10px 15px;
+        border: 1px solid transparent;
+        transition: all 0.3s ease;
+        position: relative;
+    }
+
+    .site-nav a::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, var(--neon-cyan), var(--neon-pink));
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .site-nav a::after {
+        content: attr(href);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--dark-bg);
+        font-weight: bold;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .site-nav a:hover::before,
+    .site-nav a:hover::after {
+        opacity: 1;
+    }
+
+    .site-nav a:hover {
+        color: transparent;
+        text-shadow: 0 0 10px var(--neon-cyan);
+        transform: translateY(-2px);
+    }
+
+    .search-btn {
+        background: linear-gradient(45deg, var(--neon-pink), var(--electric-blue));
+        border: none;
+        color: white;
+        padding: 12px 20px;
+        font-family: var(--gh-font-heading);
+        font-weight: bold;
+        text-transform: uppercase;
+        cursor: pointer;
+        border-radius: 0;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
+    }
+
+    .search-btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        transition: left 0.5s;
+    }
+
+    .search-btn:hover::before {
+        left: 100%;
+    }
+
+    .search-btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px rgba(255, 0, 128, 0.5);
+    }
+
+    /* Header Decoration */
+    .header-decoration {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        overflow: hidden;
+    }
+
+    .blink-bars {
+        display: flex;
+        height: 100%;
+        gap: 2px;
+    }
+
+    .blink-bars .bar {
+        flex: 1;
+        background: linear-gradient(90deg, var(--neon-cyan), var(--neon-pink), var(--neon-green));
+        animation: pulse 1s infinite alternate;
+    }
+
+    .blink-bars .bar:nth-child(2) {
+        animation-delay: 0.3s;
+    }
+
+    .blink-bars .bar:nth-child(3) {
+        animation-delay: 0.6s;
+    }
+
+    @keyframes pulse {
+        0% { opacity: 0.3; }
+        100% { opacity: 1; }
+    }
+
+    .scan-line {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
+        animation: scanMove 2s linear infinite;
+    }
+
+    @keyframes scanMove {
+        0% { transform: translateX(-100%); }
+        100% { transform: translateX(100%); }
+    }
+
+    /* Main Content */
+    .site-main {
+        min-height: 80vh;
+        padding: 40px 0;
+        position: relative;
+    }
+
+    /* Footer */
+    .site-footer {
+        background: linear-gradient(180deg, rgba(26, 10, 46, 0.9) 0%, rgba(10, 10, 15, 0.95) 100%);
+        border-top: 2px solid var(--neon-pink);
+        padding: 40px 0;
+        margin-top: 60px;
+        position: relative;
+    }
+
+    .footer-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .footer-text p {
+        margin: 5px 0;
+        color: var(--neon-cyan);
+        font-family: var(--gh-font-body);
+    }
+
+    .footer-social {
+        display: flex;
+        gap: 20px;
+    }
+
+    .social-link {
+        color: var(--neon-green);
+        text-decoration: none;
+        font-family: var(--gh-font-heading);
+        font-weight: bold;
+        padding: 8px 12px;
+        border: 1px solid var(--neon-green);
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+    }
+
+    .social-link:hover {
+        background: var(--neon-green);
+        color: var(--dark-bg);
+        box-shadow: 0 0 15px var(--neon-green);
+        transform: translateY(-2px);
+    }
+
+    .ascii-footer {
+        font-family: 'Courier New', monospace;
+        color: var(--neon-cyan);
+        text-align: center;
+        font-size: 0.8rem;
+        line-height: 1.2;
+        margin: 0;
+        text-shadow: 0 0 10px var(--neon-cyan);
+    }
+
+    /* Theme Color Variations */
+    .theme-blue {
+        --neon-cyan: #00bfff;
+        --neon-pink: #1e90ff;
+        --neon-green: #87ceeb;
+    }
+
+    .theme-purple {
+        --neon-cyan: #9370db;
+        --neon-pink: #da70d6;
+        --neon-green: #dda0dd;
+    }
+
+    .theme-green {
+        --neon-cyan: #00ff7f;
+        --neon-pink: #32cd32;
+        --neon-green: #98fb98;
+    }
+
+    .theme-orange {
+        --neon-cyan: #ff8c00;
+        --neon-pink: #ff6347;
+        --neon-green: #ffa500;
+    }
+
+    .theme-pink {
+        --neon-cyan: #ff1493;
+        --neon-pink: #ff69b4;
+        --neon-green: #ffb6c1;
+    }
+
+    .theme-slate {
+        --neon-cyan: #708090;
+        --neon-pink: #a0a0a0;
+        --neon-green: #c0c0c0;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .site-title {
+            font-size: 1.8rem;
+            letter-spacing: 1px;
+        }
+        
+        .header-content {
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .site-nav {
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .footer-content {
+            flex-direction: column;
+            text-align: center;
+        }
+    }
+
+    /* Loading Effect */
+    body.loading {
+        overflow: hidden;
+    }
+
+    body.loading::after {
+        content: 'INITIALIZING NEURAL INTERFACE...';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: var(--dark-bg);
+        color: var(--neon-cyan);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--gh-font-heading);
+        font-size: 1.5rem;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        z-index: 9999;
+        animation: loadingPulse 1.5s ease-in-out infinite;
+    }
+
+    @keyframes loadingPulse {
+        0%, 100% { opacity: 0.5; }
+        50% { opacity: 1; }
     }
     </style>
 
@@ -56,7 +512,7 @@
                         </a>
                     {{else}}
                         <a href="{{@site.url}}" class="site-title-link">
-                            <h1 class="site-title">{{@site.title}}</h1>
+                            <h1 class="site-title glitch" data-text="{{@site.title}}">{{@site.title}}</h1>
                         </a>
                     {{/if}}
                 </div>
@@ -67,14 +523,16 @@
                     
                     {{!-- Search Button --}}
                     {{#if @custom.enable_search}}
-                        <button class="search-btn" data-portal="search">[SEARCH]</button>
+                        <button class="search-btn" data-portal="search">NEURAL_SEARCH</button>
                     {{/if}}
                 </nav>
             </div>
             
-            {{!-- Early 2000s Decorative Elements --}}
+            {{!-- Cyberpunk Decorative Elements --}}
             <div class="header-decoration">
                 <div class="blink-bars">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
                     <span class="bar"></span>
                     <span class="bar"></span>
                     <span class="bar"></span>
@@ -94,68 +552,210 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-text">
-                    <p>{{#if @custom.footer_text}}{{@custom.footer_text}}{{else}}Powered by Ghost{{/if}}</p>
-                    <p>&copy; {{#if @custom.copyright_year}}{{@custom.copyright_year}}{{else}}{{date format="YYYY"}}{{/if}} {{@site.title}}</p>
+                    <p>{{#if @custom.footer_text}}{{@custom.footer_text}}{{else}}NEURAL_NETWORK_POWERED{{/if}}</p>
+                    <p>&copy; {{#if @custom.copyright_year}}{{@custom.copyright_year}}{{else}}{{date format="YYYY"}}{{/if}} {{@site.title}} // CYBERNETIC_DIVISION</p>
                 </div>
                 
                 {{!-- Social Links --}}
                 <div class="footer-social">
                     {{#if @custom.social_twitter}}
-                        <a href="https://twitter.com/{{@custom.social_twitter}}" target="_blank" class="social-link">[TWITTER]</a>
+                        <a href="https://twitter.com/{{@custom.social_twitter}}" target="_blank" class="social-link">NEURAL_LINK</a>
                     {{/if}}
                     {{#if @custom.social_github}}
-                        <a href="https://github.com/{{@custom.social_github}}" target="_blank" class="social-link">[GITHUB]</a>
+                        <a href="https://github.com/{{@custom.social_github}}" target="_blank" class="social-link">CODE_MATRIX</a>
                     {{/if}}
                     {{#if @custom.social_linkedin}}
-                        <a href="{{@custom.social_linkedin}}" target="_blank" class="social-link">[LINKEDIN]</a>
+                        <a href="{{@custom.social_linkedin}}" target="_blank" class="social-link">CORP_NET</a>
                     {{/if}}
                 </div>
             </div>
             
             <div class="footer-decoration">
                 <pre class="ascii-footer">
-╔════════════════════════════════════════╗
-║        TECH COLLECTIVE NETWORK         ║
-╚════════════════════════════════════════╝
+╔═══════════════════════════════════════════════════════╗
+║        CYBERPUNK NEURAL COLLECTIVE // v2.077         ║
+║    [CONNECTION_ESTABLISHED] [ENCRYPTION_ACTIVE]      ║
+╚═══════════════════════════════════════════════════════╝
                 </pre>
             </div>
         </div>
     </footer>
 
-    {{!-- Early 2000s JavaScript Effects --}}
+    {{!-- Cyberpunk JavaScript Effects --}}
     <script>
-        // Blinking animation
-        function startBlinking() {
+        // Enhanced blinking animation with random patterns
+        function startCyberEffects() {
             const blinkElements = document.querySelectorAll('.blink-bars .bar');
             blinkElements.forEach((bar, index) => {
                 setInterval(() => {
-                    bar.style.opacity = bar.style.opacity == '0' ? '1' : '0';
-                }, 800 + (index * 200));
+                    const randomDelay = Math.random() * 500;
+                    setTimeout(() => {
+                        bar.style.opacity = Math.random() > 0.3 ? '1' : '0.2';
+                    }, randomDelay);
+                }, 1000 + (index * 200));
             });
         }
 
-        // Matrix-style scroll effect
-        function matrixScroll() {
-            const chars = '01';
-            const drops = [];
-            
-            for (let x = 0; x < 10; x++) {
-                drops[x] = Math.random() * 50;
+        // Matrix-style digital rain effect (simplified)
+        function createDigitalRain() {
+            const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
+            const rainContainer = document.createElement('div');
+            rainContainer.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                pointer-events: none;
+                z-index: -1;
+                overflow: hidden;
+            `;
+            document.body.appendChild(rainContainer);
+
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    createRainDrop(rainContainer, chars);
+                }, i * 200);
             }
         }
 
-        // Initialize on load
-        document.addEventListener('DOMContentLoaded', function() {
-            startBlinking();
+        function createRainDrop(container, chars) {
+            const drop = document.createElement('div');
+            const char = chars[Math.floor(Math.random() * chars.length)];
             
-            // Add "loading" effect
-            const body = document.body;
-            body.style.opacity = '0';
+            drop.textContent = char;
+            drop.style.cssText = `
+                position: absolute;
+                top: -50px;
+                left: ${Math.random() * 100}vw;
+                color: #00ff41;
+                font-family: monospace;
+                font-size: ${Math.random() * 10 + 10}px;
+                opacity: ${Math.random() * 0.5 + 0.1};
+                animation: fall ${Math.random() * 3 + 2}s linear infinite;
+            `;
+            
+            container.appendChild(drop);
+            
             setTimeout(() => {
-                body.style.transition = 'opacity 0.5s';
-                body.style.opacity = '1';
-            }, 100);
+                if (drop.parentNode) {
+                    drop.parentNode.removeChild(drop);
+                }
+            }, 5000);
+        }
+
+        // Add CSS animation for falling effect
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fall {
+                to {
+                    transform: translateY(100vh);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Glitch effect for random text elements
+        function addRandomGlitch() {
+            const textElements = document.querySelectorAll('p, h1, h2, h3, h4, h5, h6, span, a');
+            const randomElement = textElements[Math.floor(Math.random() * textElements.length)];
+            
+            if (randomElement && !randomElement.classList.contains('glitch')) {
+                const originalText = randomElement.textContent;
+                randomElement.setAttribute('data-text', originalText);
+                randomElement.classList.add('glitch');
+                
+                setTimeout(() => {
+                    randomElement.classList.remove('glitch');
+                }, 2000);
+            }
+        }
+
+        // Loading screen effect
+        function showLoadingScreen() {
+            document.body.classList.add('loading');
+            
+            setTimeout(() => {
+                document.body.classList.remove('loading');
+                document.body.style.opacity = '0';
+                setTimeout(() => {
+                    document.body.style.transition = 'opacity 1s ease';
+                    document.body.style.opacity = '1';
+                }, 100);
+            }, 2000);
+        }
+
+        // Cursor trail effect
+        function createCursorTrail() {
+            let dots = [];
+            const maxDots = 15;
+
+            document.addEventListener('mousemove', function(e) {
+                const dot = document.createElement('div');
+                dot.className = 'cursor-trail';
+                dot.style.cssText = `
+                    position: fixed;
+                    left: ${e.clientX}px;
+                    top: ${e.clientY}px;
+                    width: 4px;
+                    height: 4px;
+                    background: #00ffff;
+                    border-radius: 50%;
+                    pointer-events: none;
+                    z-index: 9999;
+                    box-shadow: 0 0 6px #00ffff;
+                    animation: fade 0.5s ease-out forwards;
+                `;
+                
+                document.body.appendChild(dot);
+                dots.push(dot);
+                
+                if (dots.length > maxDots) {
+                    const oldDot = dots.shift();
+                    if (oldDot.parentNode) {
+                        oldDot.parentNode.removeChild(oldDot);
+                    }
+                }
+                
+                setTimeout(() => {
+                    if (dot.parentNode) {
+                        dot.parentNode.removeChild(dot);
+                    }
+                }, 500);
+            });
+        }
+
+        // Add fade animation for cursor trail
+        const cursorStyle = document.createElement('style');
+        cursorStyle.textContent = `
+            @keyframes fade {
+                from { opacity: 1; transform: scale(1); }
+                to { opacity: 0; transform: scale(0.5); }
+            }
+        `;
+        document.head.appendChild(cursorStyle);
+
+        // Initialize all effects
+        document.addEventListener('DOMContentLoaded', function() {
+            showLoadingScreen();
+            startCyberEffects();
+            createDigitalRain();
+            createCursorTrail();
+            
+            // Random glitch effects
+            setInterval(addRandomGlitch, 5000);
+            
+            // Typing sound effect simulation
+            document.addEventListener('keydown', function() {
+                // Could add actual sound effects here
+                console.log('>> NEURAL_INPUT_DETECTED');
+            });
         });
+
+        // Terminal-style console messages
+        console.log('%c>> CYBERPUNK INTERFACE INITIALIZED', 'color: #00ffff; font-weight: bold; font-size: 16px;');
+        console.log('%c>> NEURAL PATHWAYS ESTABLISHED', 'color: #ff0080; font-weight: bold;');
+        console.log('%c>> WELCOME TO THE MATRIX', 'color: #00ff41; font-weight: bold;');
     </script>
 
     {{ghost_foot}}
