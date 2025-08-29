@@ -17,7 +17,7 @@ body {
     margin: 0;
     padding: 0;
     color: #464646;
-    font-family: var(--body-font, var(--gh-font-body, var(--font-sans-serif)));
+    font-family: var(--gh-font-body, "Space Mono", "VT323", "Share Tech Mono", "Inconsolata", "Source Code Pro", "Roboto Mono", "Anonymous Pro", "Overpass Mono", "PT Mono", "Ubuntu Mono", monospace);
     font-size: 1.5rem;
     line-height: 1.6em;
     font-weight: 400;
@@ -144,7 +144,7 @@ h6 {
     margin: 0;
     line-height: 1.15em;
     font-weight: 700;
-    font-family: var(--heading-font, var(--gh-font-heading, var(--font-mono)));
+    font-family: var(--gh-font-heading, "Space Mono", "VT323", "Share Tech Mono", "Inconsolata", "Source Code Pro", "Roboto Mono", "Anonymous Pro", "Overpass Mono", "PT Mono", "Ubuntu Mono", monospace);
 }
 
 h1 {

@@ -12,6 +12,8 @@
         <link rel="icon" href="{{@custom.favicon}}" type="image/x-icon">
     {{/if}}
 
+
+
     {{!-- Dynamic CSS Variables --}}
     <style>
     :root {
@@ -21,9 +23,9 @@
         --letter-spacing: {{#match @custom.letter_spacing "Tight"}}-0.05em{{/match}}{{#match @custom.letter_spacing "Normal"}}0{{/match}}{{#match @custom.letter_spacing "Wide"}}0.1em{{/match}}{{#match @custom.letter_spacing "Extra Wide"}}0.2em{{/match}};
         --scale-factor: {{#match @custom.typography_scale "Compact"}}0.9{{/match}}{{#match @custom.typography_scale "Standard"}}1{{/match}}{{#match @custom.typography_scale "Large"}}1.2{{/match}}{{#match @custom.typography_scale "Extra Large"}}1.4{{/match}};
         
-        /* Custom typography fallbacks */
-        --heading-font: var(--gh-font-heading, '{{@custom.heading_typography}}', monospace);
-        --body-font: var(--gh-font-body, '{{@custom.body_typography}}', monospace);
+        /* Typography */
+        --gh-font-heading: var(--gh-font-heading, monospace);
+        --gh-font-body: var(--gh-font-body, monospace);
     }
     </style>
 
