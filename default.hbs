@@ -16,24 +16,27 @@
         <link rel="icon" href="{{@custom.favicon}}" type="image/x-icon">
     {{/if}}
 
-    {{!-- Cyberpunk CSS --}}
     <style>
+    /* ===== CYBERPUNK THEME STYLES ===== */
     :root {
-        /* Cyberpunk Color Palette */
+        /* Cyberpunk neon color palette - primary UI colors */
         --neon-cyan: #00ffff;
         --neon-pink: #ff0080;
         --neon-green: #00ff41;
         --neon-purple: #8a2be2;
         --electric-blue: #0040ff;
+        
+        /* Dark background colors for cyberpunk atmosphere */
         --dark-bg: #0a0a0f;
         --darker-bg: #050507;
         --card-bg: rgba(20, 20, 30, 0.8);
         --border-glow: rgba(0, 255, 255, 0.3);
         
+        /* Ghost theme integration */
         --primary-color: var(--neon-cyan);
         --accent-color: var(--neon-pink);
         
-        /* Typography */
+        /* Futuristic font stack */
         --gh-font-heading: 'Orbitron', 'Courier New', monospace;
         --gh-font-body: 'Rajdhani', 'Courier New', monospace;
     }
@@ -53,7 +56,7 @@
         overflow-x: hidden;
     }
 
-    /* Animated Grid Background */
+    /* Moving grid background pattern for cyberpunk atmosphere */
     body::before {
         content: '';
         position: fixed;
@@ -75,7 +78,7 @@
         100% { transform: translate(50px, 50px); }
     }
 
-    /* Glitch Effect */
+    /* Text glitch effect - creates RGB color separation on text */
     .glitch {
         position: relative;
         color: var(--neon-cyan);
@@ -122,7 +125,7 @@
         }
     }
 
-    /* Header Styles */
+    /* Header styling with glassmorphism and neon border effects */
     .site-header {
         background: linear-gradient(180deg, rgba(10, 10, 15, 0.9) 0%, rgba(26, 10, 46, 0.8) 100%);
         backdrop-filter: blur(10px);
@@ -186,7 +189,7 @@
         filter: drop-shadow(0 0 10px var(--neon-cyan));
     }
 
-    /* Navigation */
+    /* Navigation links with hover effects and cyberpunk styling */
     .site-nav {
         display: flex;
         align-items: center;
@@ -280,7 +283,7 @@
         box-shadow: 0 0 20px rgba(255, 0, 128, 0.5);
     }
 
-    /* Header Decoration */
+    /* Animated bars beneath header that pulse with different timing */
     .header-decoration {
         position: absolute;
         bottom: 0;
