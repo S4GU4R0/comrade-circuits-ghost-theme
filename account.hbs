@@ -1,0 +1,20 @@
+{{#if @member}}
+  <h2>Account</h2>
+  <p>Name: {{@member.name}}</p>
+  <p>Email: {{@member.email}}</p>
+  <a href="javascript:" data-members-signout>Sign out</a>
+
+  {{#foreach @member.subscriptions}}
+    <div>
+      <p>Plan: {{plan.nickname}} ({{plan.interval}})</p>
+      <p>Status: {{status}}</p>
+      <p>Next bill date: {{date current_period_end format="DD MMM YYYY"}}</p>
+      {{cancel_link}}
+    </div>
+  {{/foreach}}
+{{else}}
+  <form data-members-form="signin">
+    <input data-members-email type="email" required="true"/>
+    <button type="submit">Sign in</button>
+  </form>
+{{/if}}

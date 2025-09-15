@@ -1,0 +1,44 @@
+@import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Ballet:opsz@16..72&family=Luxurious+Roman&family=Press+Start+2P&display=swap");
+
+@plugin "daisyui" {
+    themes: lofi --default;
+}
+
+@plugin "daisyui/theme" {
+    name: "lofi";
+    default: true;
+
+    --color-base-100: #1a1a1a;
+    --color-base-200: #2d2d2d;
+    --color-base-300: #404040;
+    --color-base-content: #ffffff;
+    --color-primary: #dc2626;
+    --color-primary-content: #ffffff;
+    --color-secondary: #eab308;
+    --color-secondary-content: #000000;
+    --color-accent: #ef4444;
+    --color-accent-content: #ffffff;
+    --color-neutral: #374151;
+    --color-neutral-content: #ffffff;
+    --color-info: #3b82f6;
+    --color-info-content: #ffffff;
+    --color-success: #22c55e;
+    --color-success-content: #ffffff;
+    --color-warning: #f59e0b;
+    --color-warning-content: #000000;
+    --color-error: #dc2626;
+    --color-error-content: #ffffff;
+}
+
+
+@layer base {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: "Press Start 2P", mono;
+    }
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="{{@site.locale}}">
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{asset "built/index.css"}}" />
+    <script src="{{asset "built/index.js"}}" defer></script>
+
+    <title>{{meta_title}}</title>
+
+    {{ghost_head}}
+    {{!-- Outputs important meta data and settings, should always be in <head> --}}
+
+</head>
+
+<body class="{{body_class}} group">
+<div class="flex flex-col min-h-screen bg-white">
+
+{{> "head"}}
+
+<main class="gh-main flex grow flex-col">
+
+    <section class="gh-page gh-error flex flex-col justify-center grow px-[4vmin]">
+        <div class="gh-container w-full max-w-(--container-width) mx-auto">
+
+            <section class="gh-error-content grow text-center">
+
+                <h1 class="gh-error-code m-0 text-[14vmin]">{{statusCode}}</h1>
+                <p class="gh-error-description max-w-[600px] mx-auto px-0.5 text-[4vmin]  font-light opacity-60">{{message}}</p>
+                <p class="gh-error-link mt-[4vmin] text-lg"><a href="{{@site.url}}">Go to the front page →</a></p>
+
+                {{#if errorDetails}}
+                <section class="gh-error-stack max-w-[600px] mx-auto py-[8vmin] text-left">
+                    <h4>Theme errors:</h4>
+                    <ul class="gh-error-stack-list mt-[4vmin] text-base">
+                        {{#foreach errorDetails}}
+                        <li class="py-0.5 m-0 border-t border-[rgba(0,0,0,0.1)]">
+                            <h5 class="gh-error-stack-function mb-[0.5em] text-lg text-red-600">{{{rule}}}</h5>
+
+                            {{#foreach failures}}
+                            <span class="gh-error-stack-file"><strong>Ref:</strong> {{ref}}</span><br>
+                            <span class="gh-error-stack-file"><strong>Message:</strong> {{message}}</span>
+                            {{/foreach}}
+                        </li>
+                        {{/foreach}}
+                    </ul>
+                </section>
+                {{/if}}
+
+            </section>
+
+        </div>
+    </section>
+
+</main>
+
+{{> "foot"}}
+
+</div>
+
+{{!-- <foot> --}}
+{{ghost_foot}}
+{{!-- Outputs important scripts - should always be included before closing body tag --}}
+
+</body>
+</html>
