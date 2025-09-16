@@ -1,6 +1,6 @@
 <div class="gh-postfeed grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 pb-[8vmin]">
-    {{#get "posts" filter="tag:{{tag-slug}}" limit="5"}}
     {{#foreach posts}}
+    {{^has tag="#member-benefits" }}
     <div class="h-full shadow-xl card bg-base-100">
         {{#if feature_image}}
         <figure class="overflow-hidden aspect-video">
@@ -19,6 +19,6 @@
             </div>
         </div>
     </div>
+    {{/has}}
     {{/foreach}}
-    {{/get}}
 </div>
