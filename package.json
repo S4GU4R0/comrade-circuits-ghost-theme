@@ -2,7 +2,7 @@
     "name": "comrade-circuits-ghost-theme",
     "description": "A starter theme for Ghost theme development with TailwindCSS",
     "demo": "https://comradecircuits.com",
-    "version": "1.0.14",
+    "version": "1.0.15",
     "engines": {
         "ghost": ">=5.0.0"
     },
@@ -57,7 +57,8 @@
         "rollup": "^3.18.0",
         "rollup-plugin-livereload": "^2.0.5",
         "rollup-plugin-postcss": "^4.0.2",
-        "tailwindcss": "^4.1.13"
+        "tailwindcss": "^4.1.13",
+        "tailwindcss-highlights": "^1.0.0"
     },
     "browserslist": [
         "defaults"
