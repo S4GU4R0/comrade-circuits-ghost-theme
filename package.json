@@ -1,8 +1,8 @@
 {
     "name": "comrade-circuits-ghost-theme",
-    "description": "A starter theme for Ghost theme development with TailwindCSS",
+    "description": "Theme for the Comrade Circuits home page",
     "demo": "https://comradecircuits.com",
-    "version": "1.0.23",
+    "version": "1.0.24",
     "engines": {
         "ghost": ">=5.0.0"
     },
@@ -18,9 +18,9 @@
         "pretest": "npm run build"
     },
     "author": {
-        "name": "Ghost Foundation",
-        "email": "hello@ghost.org",
-        "url": "https://ghost.org"
+        "name": "S4GU4R0",
+        "email": "hey@s4gu4r0.wtf",
+        "url": "https://s4gu4r0.wtf"
     },
     "gpm": {
         "type": "theme",
@@ -36,10 +36,10 @@
     ],
     "repository": {
         "type": "git",
-        "url": "https://github.com/TryGhost/Starter.git"
+        "url": "https://github.com/S4GU4R0/comrade-circuits-ghost-theme.git"
     },
-    "bugs": "https://github.com/TryGhost/Starter/issues",
-    "contributors": "https://github.com/TryGhost/Starter/graphs/contributors",
+    "bugs": "https://github.com/S4GU4R0/comrade-circuits-ghost-theme/issues",
+    "contributors": "https://github.com/S4GU4R0/comrade-circuits-ghost-theme/graphs/contributors",
     "devDependencies": {
         "@babel/core": "^7.21.0",
         "@babel/preset-env": "^7.20.2",
