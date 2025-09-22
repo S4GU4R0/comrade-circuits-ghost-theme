@@ -2,7 +2,7 @@
     "name": "comrade-circuits-ghost-theme",
     "description": "Theme for the Comrade Circuits home page",
     "demo": "https://comradecircuits.com",
-    "version": "1.0.24",
+    "version": "1.0.25",
     "engines": {
         "ghost": ">=5.0.0"
     },
